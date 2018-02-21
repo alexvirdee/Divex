@@ -10,3 +10,20 @@ h2 {
 	color: #fff;
 	margin-top: 10px;
 }
+
+form {
+	width: 50%;
+	margin:0 auto;
+}
+
+label {
+	color: #fff;
+}
+
+p {
+	color: #fff;
+}
+
+.login-para {
+	margin-top: 5px;
+}
