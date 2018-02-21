@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import './App.css';
 import Login from './components/Login';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
