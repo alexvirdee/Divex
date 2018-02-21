@@ -7,14 +7,15 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 class App extends Component {
   render() {
     return (
-    	<Router>
+    <Router>
       <div className="App">
        <Login/>
-
       </div>
-      </Router>
+     </Router>
     );
   }
 }
+
+
 
 export default App;

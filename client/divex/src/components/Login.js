@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Formtext } from 'reactstrap';
 import '../App.css';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 export default class Login extends Component {
 	render() {
@@ -18,7 +19,7 @@ export default class Login extends Component {
         </FormGroup>
         <Button color="primary">Login</Button>
         <p className="login-para"> Not a member? Sign up here</p>
-        <Button color="success">Sign Up</Button>
+    <Button color="success">Sign Up</Button> 
       </Form>
       </div>
 			)
