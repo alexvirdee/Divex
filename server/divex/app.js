@@ -8,6 +8,15 @@ var auth = require('./routes/auth');
 var api = require('./routes/api');
 
 
+// Mongoose Configure
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/divex");
+
+// Require the models
+const User = require('./models/user');
+const Dive = require('./models/dive');
+
+
 // LINK ROUTES
 var index = require('./routes/index');
 
@@ -24,6 +33,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+	secret: "divex-app",
+	resave: true,
+	saveUninitialized: true
+}));
 
 
 // MIDDLEWARE
