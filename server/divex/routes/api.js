@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('router');
+const router = express.Router();
 
 // get a list of dives from teh database
 router.get('/dives', (req, res, next) => {
