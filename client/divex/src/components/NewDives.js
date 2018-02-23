@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-export default class Dives extends Component {
+export default class NewDives extends Component {
 	render() {
 		return (
-				<div className="Dives">
+				<div className="NewDives">
 					
-				</div>
+				</div>	
 			)
 	}
 }
