@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var auth = require('./routes/auth');
+var api = require('./routes/api');
 
 
 // LINK ROUTES
@@ -26,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // MIDDLEWARE
 app.use('/', index);
+app.use('/api', api);
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

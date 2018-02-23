@@ -12,12 +12,12 @@ router.post('/dives', (req, res, next) => {
 });
 
 // update dive in the db
-router.put('/dives', (req, res, next) => {
+router.put('/dives/:id', (req, res, next) => {
 	res.send({type: 'PUT'});
 });
 
 // delete a dive from the db
-router.delete('/dives', (req, res, next) => {
+router.delete('/dives/:id', (req, res, next) => {
 	res.send({type: 'DELETE'});
 });
 
