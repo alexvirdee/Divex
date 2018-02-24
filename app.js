@@ -32,6 +32,10 @@ var index = require('./routes/index');
 
 var app = express();
 
+// express layouts
+app.set('layout', 'layouts/main-layout');
+app.use(expressLayouts);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
