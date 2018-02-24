@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passportRouter = require('./routes/auth');
 var router = require('./routes/api');
+var expressLayouts = require('express-ejs-layouts');
 
 
 // Mongoose Configure
