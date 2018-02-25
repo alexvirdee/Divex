@@ -4,8 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+// initialize routes
 var auth = require('./routes/auth');
 var apiRouter = require('./routes/api');
+
+// express layouts
 var expressLayouts = require('express-ejs-layouts');
 
 
@@ -84,7 +88,7 @@ passport.use('local-signup', new LocalStrategy(
             } else {
                 // Destructure the body
                 const { username, email, description, password } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
                 const newUser = new User({
                   username,
                   email,
@@ -190,8 +194,8 @@ app.use( (req, res, next) => {
 
 // MIDDLEWARE
 app.use('/', index);
-app.use('/api', apiRouter);
-app.use('/', auth);
+app.use('/api', apiRouter); // dive routes
+app.use('/', auth); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
