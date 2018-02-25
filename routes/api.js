@@ -1,24 +1,24 @@
 const express = require('express');
-const router = express.Router();
+const apiRouter = express.Router();
 
 // get a list of dives from teh database
-router.get('/dives', (req, res, next) => {
+apiRouter.get('/dives', (req, res, next) => {
 	res.send({type: 'GET'});
 });
 
 // add a new dive into the db
-router.post('/dives', (req, res, next) => {
+apiRouter.post('/dives', (req, res, next) => {
 	res.send({type: 'POST'});
 });
 
 // update dive in the db
-router.put('/dives/:id', (req, res, next) => {
+apiRouter.put('/dives/:id', (req, res, next) => {
 	res.send({type: 'PUT'});
 });
 
 // delete a dive from the db
-router.delete('/dives/:id', (req, res, next) => {
+apiRouter.delete('/dives/:id', (req, res, next) => {
 	res.send({type: 'DELETE'});
 });
 
-module.exports = router;
+module.exports = apiRouter;

@@ -1,69 +1,33 @@
 const express = require('express');
-const passportRouter = express.Router();
-const User = require('../models/user');
-// encrypt passwords
-const bcrypt = require('bcrypt');
-const bcryptSalt = 10;
-const ensureLogin = require('connect-ensure-login');
+const auth = express.Router();
 const passport = require('passport');
 
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-
-passportRouter.get('/login', (req, res, next) => {
-	res.render('auth/login');
+auth.get('/login', ensureLoggedOut(), (req, res, next) => {
+    res.render('auth/login');
 });
 
-// passportRouter.post('/login', passport.authenticate("local", {
-// 	successRedirect: "/",
-// 	failureRedirect: "/login",
-// 	failureFlash: true,
-// 	passReqToCallback: true
-// }));
+auth.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
+    successRedirect: '/dives',
+    failureRedirect: '/login'
+}))
 
 // GET request to signup form
-passportRouter.get('/signup', (req, res, next) => {
-	res.render('auth/signup');
+auth.get('/signup', ensureLoggedOut(), (req, res, next) => {
+    res.render('auth/signup');
 });
 
-// Signup a new user
-// passportRouter.post('/signup', (req, res, next) => {
-// 	const username = req.body.username;
-// 	const password = req.body.password;
+auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+    successRedirect: '/dives',
+    failureRedirect: '/signup'
+}));
 
-// 	if (username === "" || password === "") {
-// 		// do something
-// 	}
-
-// 	User.findOne({ username }, "username", (err, user) => {
-// 		if (user !== null) {
-// 			// do something
-// 			return;
-// 		}
-
-// 		const salt = bcrypt.genSaltSync(bcryptSalt);
-// 		const hashPass = bcrypt.hashSync(password, salt);
-
-// 		const newUser = new User({
-// 			username,
-// 			password: hashPass
-// 		});
-
-// 		newUser.save((err) => {
-// 			if (err) {
-// 				// do something
-// 			} else {
-// 				res.redirect("/");
-// 			}
-// 		});
-// 	});
-// });
+// Handle logout
+auth.post("/logout", ensureLoggedIn('/login'), (req, res, next) => {
+    req.logout();
+    res.redirect('/');
+})
 
 
-
-
-// passportRouter.get("/logout", (req, res, next) => {
-// 	res.logout();
-// 	res.redirect("/login");
-// });
-
-module.exports = passportRouter;
+module.exports = auth;
