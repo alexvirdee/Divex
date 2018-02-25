@@ -11,7 +11,7 @@ apiRouter.get('/dives', (req, res, next) => {
 apiRouter.post('/dives', (req, res, next) => {
 	Dive.create(req.body).then(function(dive) {
 		res.send(dive);
-	});
+	}).catch(next);
 });
 
 // update dive in the db

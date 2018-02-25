@@ -214,6 +214,9 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+
+    // handle error for dive number if not included
+    res.status(422).send({error: err.message});
 });
 
 module.exports = app;
