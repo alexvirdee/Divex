@@ -7,8 +7,8 @@ const DiveSchema = new Schema({
 	date: { type: Date, default: Date.now },
 	location: String,
 	objective: String,
-	conditions: String,
-	totalTime: Date,
+	visibility: Number,
+	totalTime: Number,
 	depth: Number,
 	observations: String,
 	imageURL: String

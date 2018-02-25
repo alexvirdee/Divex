@@ -8,7 +8,18 @@ apiRouter.get('/dives', (req, res, next) => {
 
 // add a new dive into the db
 apiRouter.post('/dives', (req, res, next) => {
-	res.send({type: 'POST'});
+	console.log(req.body);
+	res.send({
+		type: 'POST',
+		name: req.body.number,
+		date: req.body.date,
+		location: req.body.location,
+		objective: req.body.objective,
+		visibility: req.body.visibility,
+		totalTime: req.body.totalTime,
+		depth: req.body.depth,
+		observations: req.body.observations
+	});
 });
 
 // update dive in the db
