@@ -20,6 +20,7 @@ const Dive = require('./models/dive');
 // Require Passport
 const passport = require('passport');
 const LocalStrategy = require("passport-local").Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
 const flash = require('connect-flash');
 const session = require("express-session");
 
@@ -112,6 +113,34 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
     return next(null, user);
   });
+}));
+
+
+passport.use(new FbStrategy({
+  clientID: "1004694843003133",
+  clientSecret: "6fc03018fa5375f6eca322726ab1c043",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      facebookID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
 }));
 
 

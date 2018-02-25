@@ -13,6 +13,13 @@ auth.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
     failureRedirect: '/login'
 }))
 
+// auth routes for facebook login
+auth.get('/auth/facebook', passport.authenticate('facebook'));
+auth.get('/auth/facebook/callback', passport.authenticate('facebook', {
+	successRedirect: '/dives',
+	failureRedirect: '/signup'
+}));
+
 // GET request to signup form
 auth.get('/signup', ensureLoggedOut(), (req, res, next) => {
     res.render('auth/signup');
