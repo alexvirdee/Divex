@@ -21,6 +21,7 @@ const Dive = require('./models/dive');
 const passport = require('passport');
 const LocalStrategy = require("passport-local").Strategy;
 const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const flash = require('connect-flash');
 const session = require("express-session");
 
@@ -142,6 +143,36 @@ passport.use(new FbStrategy({
   });
 
 }));
+
+
+passport.use(new GoogleStrategy({
+  clientID: "812772459618-5hn3doqmblo0d0ji1941b4ljhqt4bbco.apps.googleusercontent.com",
+  clientSecret: "cCQGh06d9chGUlq9eTVEeHOa",
+  callbackURL: "/auth/google/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ googleID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      googleID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+
 
 
 app.use(passport.initialize());

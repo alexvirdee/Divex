@@ -17,8 +17,19 @@ auth.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 auth.get('/auth/facebook', passport.authenticate('facebook'));
 auth.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	successRedirect: '/dives',
-	failureRedirect: '/signup'
+	failureRedirect: '/'
 }));
+
+// auth routes for google login
+auth.get('/auth/google', passport.authenticate("google", {
+	scope: ["https://www.googleapis.com/auth/plus.login",
+	"https://www.googleapis.com/auth/plus.profile.emails.read"]
+}));
+
+auth.get("/auth/google/callback", passport.authenticate("google", {
+	successRedirect: '/dives',
+	failureRedirect: '/'
+}))
 
 // GET request to signup form
 auth.get('/signup', ensureLoggedOut(), (req, res, next) => {
