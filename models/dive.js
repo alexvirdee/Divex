@@ -3,8 +3,14 @@ const Schema = mongoose.Schema;
 
 // create dive Schema & model
 const DiveSchema = new Schema({
-	number: Number,
-	date: { type: Date, default: Date.now },
+	number: {
+		type: Number,
+		required: [true, 'Dive number is required']
+	},
+	date: { 
+		type: Date, 
+		default: Date.now 
+	},
 	location: String,
 	objective: String,
 	visibility: Number,
@@ -12,6 +18,8 @@ const DiveSchema = new Schema({
 	depth: Number,
 	observations: String,
 	imageURL: String
+
+	// add in maps location 
 });
 
 const Dive = mongoose.model("Dive", DiveSchema);

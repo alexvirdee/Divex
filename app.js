@@ -17,7 +17,7 @@ var expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/divex");
 
-// Require the models
+// Require the models schemas for db
 const User = require('./models/user');
 const Dive = require('./models/dive');
 
