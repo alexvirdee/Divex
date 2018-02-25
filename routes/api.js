@@ -21,7 +21,9 @@ apiRouter.put('/dives/:id', (req, res, next) => {
 
 // delete a dive from the db
 apiRouter.delete('/dives/:id', (req, res, next) => {
-	res.send({type: 'DELETE'});
+	Dive.findByIdAndRemove({_id: req.params.id}).then(function(dive) {
+		res.send(dive);
+	});
 });
 
 module.exports = apiRouter;
