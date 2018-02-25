@@ -42,10 +42,10 @@ auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
 }));
 
 // Handle logout
-auth.post("/logout", ensureLoggedIn('/login'), (req, res, next) => {
+auth.get("/logout", ensureLoggedIn('/login'), (req, res, next) => {
     req.logout();
     res.redirect('/');
-})
+});
 
 
 module.exports = auth;
