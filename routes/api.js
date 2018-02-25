@@ -4,7 +4,9 @@ const Dive = require('../models/dive');
 
 // get request for dives page 
 apiRouter.get('/dives', (req, res, next) => {
-	res.render('dives/dive')
+	Dive.find({}).then(function(dives) {
+			res.render('dives/dive')
+		});
 });
 
 // add a new dive into the db

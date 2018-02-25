@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-"geometry": {
-    "type": "Point",
-    "coordinates": [125.6, 10.1]
-  }
-
 // create geolocation Schema
 const GeoSchema = new Schema({
 	type: {
@@ -33,11 +28,10 @@ const DiveSchema = new Schema({
 	visibility: Number,
 	totalTime: Number,
 	depth: Number,
-	observations: [String]
-
-	// add in images to Schema
-
+	observations: [String],
 	// add in maps location 
+	geometry: GeoSchema
+	// add in images to Schema
 });
 
 const Dive = mongoose.model("Dive", DiveSchema);
