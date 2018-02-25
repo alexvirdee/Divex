@@ -55,11 +55,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    secret: "divex-app",
-    resave: true,
-    saveUninitialized: true
-}));
+
 
 // passport configuration
 passport.serializeUser((user, cb) => {
@@ -177,15 +173,20 @@ passport.use(new GoogleStrategy({
 
 }));
 
+app.use(session({
+    secret: "divex-app",
+    resave: true,
+    saveUninitialized: false
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // authentication configuration
 app.use( (req, res, next) => {
     if (typeof(req.user) !== "undefined") {
         res.locals.userSignedIn = true;
+        res.locals.user = req.user || null
     } else {
         res.locals.userSignedIn = false;
     }
@@ -195,8 +196,9 @@ app.use( (req, res, next) => {
 
 // MIDDLEWARE
 app.use('/', index);
-app.use('/api', apiRouter); // dive routes
 app.use('/', auth); 
+app.use('/api', apiRouter); // dive routes
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

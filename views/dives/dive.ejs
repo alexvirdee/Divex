@@ -1,10 +1,9 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href='/stylesheets/dives.css' />
 <h1>DIVEX</h1>
-<p>Always remember your dive experiences</p>
-<div class="dive-logs">
-	
-</div>
+<% if (user) { %> 
+<p>Welcome, <%= user.username %></p>
+<% } %>
 <footer id="footer">
 <a href="/logout"><i class="fas fa-power-off"></i></a>
 </footer>
