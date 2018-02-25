@@ -16,8 +16,9 @@ const DiveSchema = new Schema({
 	visibility: Number,
 	totalTime: Number,
 	depth: Number,
-	observations: String,
-	imageURL: String
+	observations: String
+
+	// add in images to Schema
 
 	// add in maps location 
 });

@@ -13,9 +13,10 @@ var apiRouter = require('./routes/api');
 var expressLayouts = require('express-ejs-layouts');
 
 
-// Mongoose Configure
+// Mongoose Configure/Connect
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/divex");
+mongoose.Promise = global.Promise;
 
 // Require the models schemas for db
 const User = require('./models/user');
