@@ -8,11 +8,10 @@ const DiveSchema = new Schema({
 	location: String,
 	objective: String,
 	conditions: String,
-	timeIn: Date,
-	timeOut: Date,
 	totalTime: Date,
 	depth: Number,
-	observations: String 
+	observations: String,
+	imageURL: String
 });
 
 const Dive = mongoose.model("Dive", DiveSchema);

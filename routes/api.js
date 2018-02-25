@@ -1,9 +1,9 @@
 const express = require('express');
 const apiRouter = express.Router();
 
-// get a list of dives from teh database
+// get request for dives page 
 apiRouter.get('/dives', (req, res, next) => {
-	res.send({type: 'GET'});
+	res.render('dives/dive')
 });
 
 // add a new dive into the db

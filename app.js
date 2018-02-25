@@ -173,8 +173,6 @@ passport.use(new GoogleStrategy({
 }));
 
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -192,9 +190,8 @@ app.use( (req, res, next) => {
 
 // MIDDLEWARE
 app.use('/', index);
-app.use('/', auth);
 app.use('/api', apiRouter);
-
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

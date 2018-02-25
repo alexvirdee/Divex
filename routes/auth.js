@@ -9,14 +9,14 @@ auth.get('/login', ensureLoggedOut(), (req, res, next) => {
 });
 
 auth.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-    successRedirect: '/dives',
+    successRedirect: '/api/dives',
     failureRedirect: '/login'
 }))
 
 // auth routes for facebook login
 auth.get('/auth/facebook', passport.authenticate('facebook'));
 auth.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/dives',
+	successRedirect: '/api/dives',
 	failureRedirect: '/'
 }));
 
@@ -27,7 +27,7 @@ auth.get('/auth/google', passport.authenticate("google", {
 }));
 
 auth.get("/auth/google/callback", passport.authenticate("google", {
-	successRedirect: '/dives',
+	successRedirect: '/api/dives',
 	failureRedirect: '/'
 }))
 
@@ -37,7 +37,7 @@ auth.get('/signup', ensureLoggedOut(), (req, res, next) => {
 });
 
 auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-    successRedirect: '/dives',
+    successRedirect: '/api/dives',
     failureRedirect: '/signup'
 }));
 
