@@ -11,6 +11,10 @@ h1, p {
 	color: #fff;
 }
 
+.new-h1 {
+    color: #fff;
+    margin-left: 40px;
+}
 
 #footer {
     position: fixed;
@@ -57,4 +61,36 @@ a:hover, a:visited, a:link, a:active
 
 #button-detail {
     margin-left: 40px;
+}
+
+#dive-log {
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    background: rgba(0,0,0,.6);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+    border-radius: 10px;
+}
+
+
+#dive-log .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+#back-button {
+   position: absolute;
+   right: 50px;
+   bottom: 40px;
 }

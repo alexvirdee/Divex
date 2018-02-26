@@ -60,7 +60,6 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-
 apiRouter.get('/dives/:id', (req, res, next) =>{
 	diveId = req.params.id;
 	Dive.findById(diveId, (err, theDive) => {
