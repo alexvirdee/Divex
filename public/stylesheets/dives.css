@@ -49,15 +49,13 @@ a:active {
 
 #color-link {
     background: rgba(0, 0, 0, .6);
-    box-sizing: border-box;
+    margin-top: 10px;
     box-shadow: 0 40px 25px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid blue;
-    text-align: center;
     width: 400px;
     display: inline-block;
     text-align: center;
-    color: whitesmoke;
     font-weight: 600;
 }
 
