@@ -7,8 +7,9 @@ body {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-h1, p {
-	color: #fff;
+h1,
+p {
+    color: #fff;
 }
 
 .new-h1 {
@@ -20,36 +21,50 @@ h1, p {
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%; 
+    width: 100%;
     background: #000;
-    opacity: 0.6; 
+    opacity: 0.6;
 }
 
 footer a {
-	float: right;
-	margin-right: 15px;
-	font-size: 21px;
-	padding: 4px;
-	color: #fff;
+    float: right;
+    margin-right: 15px;
+    font-size: 21px;
+    padding: 4px;
+    color: #fff;
 }
 
 button a {
     color: #fff;
 }
 
-a:hover, a:visited, a:link, a:active
-{
+a:hover,
+a:visited,
+a:link,
+a:active {
     text-decoration: none;
-    color:#fff;
+    color: #fff;
 }
 
+
 #color-link {
-    margin-left: 15px;
+    background: rgba(0, 0, 0, .6);
+    box-sizing: border-box;
+    box-shadow: 0 40px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border: 1px solid blue;
+    text-align: center;
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    color: whitesmoke;
+    font-weight: 600;
 }
 
 #color-link:hover {
-    color: red;
+    color: #04F4FF;
 }
+
 
 .dive-info {
     list-style-type: none;
@@ -64,15 +79,15 @@ a:hover, a:visited, a:link, a:active
 }
 
 #dive-log {
-     position: absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     padding: 40px;
-    background: rgba(0,0,0,.6);
+    background: rgba(0, 0, 0, .6);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
@@ -90,7 +105,35 @@ a:hover, a:visited, a:link, a:active
 }
 
 #back-button {
-   position: absolute;
-   right: 50px;
-   bottom: 40px;
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
+}
+
+
+@media only screen and (max-width: 520px) {
+    #new-dives {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #color-link {
+        width: 100px;
+        height: 100%;
+        margin: auto;
+    }
+
+    h1,
+    p {
+        text-align: center !important;
+    }
+
+    #button-add {
+        position: relative;
+        left: 60px;
+    }
+
+    .new-h1 {
+        text-align: center;
+    }
 }
