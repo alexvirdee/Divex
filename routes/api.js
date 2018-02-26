@@ -54,7 +54,7 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
 	if (err) {
 		res.render('dives/new');
 	} else {
-		res.redirect('api/dives');
+		res.redirect('/api/dives');
 	}
   });
 });
