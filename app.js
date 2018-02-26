@@ -70,106 +70,109 @@ passport.deserializeUser((id, cb) => {
 });
 
 // Signing Up
-passport.use('local-signup', new LocalStrategy(
-  { passReqToCallback: true },
-  (req, username, password, next) => {
-    // To avoid race conditions
-    process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+passport.use('local-signup', new LocalStrategy({ passReqToCallback: true },
+    (req, username, password, next) => {
+        // To avoid race conditions
+        process.nextTick(() => {
+            User.findOne({
+                'username': username
+            }, (err, user) => {
+                if (err) { return next(err); }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const { username, email, description, password } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
+                if (user) {
+                    return next(null, false);
+                } else {
+                    // Destructure the body
+                    const { username, email, description, password } = req.body;
+                    const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+                    const newUser = new User({
+                        username,
+                        email,
+                        password: hashPass
+                    });
 
-                newUser.save((err) => {
-                    if (err){ next(err); }
-                    return next(null, newUser);
-                });
-            }
+                    newUser.save((err) => {
+                        if (err) { next(err); }
+                        return next(null, newUser);
+                    });
+                }
+            });
         });
-    });
-}));
+    }));
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
+    User.findOne({ username }, (err, user) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return next(null, false, { message: "Incorrect username" });
+        }
+        if (!bcrypt.compareSync(password, user.password)) {
+            return next(null, false, { message: "Incorrect password" });
+        }
 
-    return next(null, user);
-  });
+        return next(null, user);
+    });
 }));
 
 
 passport.use(new FbStrategy({
-  clientID: "1004694843003133",
-  clientSecret: "6fc03018fa5375f6eca322726ab1c043",
-  callbackURL: "/auth/facebook/callback"
+    clientID: "1004694843003133",
+    clientSecret: "6fc03018fa5375f6eca322726ab1c043",
+    callbackURL: "/auth/facebook/callback",
+    profileURL: 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
+    profileFields: ['id', 'email', 'name']
+
 }, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ facebookID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
+    User.findOne({ facebookID: profile.id }, (err, user) => {
+        if (err) {
+            return done(err);
+        }
+        if (user) {
+            return done(null, user);
+        }
 
-    const newUser = new User({
-      facebookID: profile.id
-    });
+        const newUser = new User({
+            facebookID: profile.id
+        });
 
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
+
+        newUser.save((err) => {
+            if (err) {
+                return done(err);
+            }
+            done(null, newUser);
+        });
     });
-  });
 
 }));
 
 
 passport.use(new GoogleStrategy({
-  clientID: "812772459618-5hn3doqmblo0d0ji1941b4ljhqt4bbco.apps.googleusercontent.com",
-  clientSecret: "cCQGh06d9chGUlq9eTVEeHOa",
-  callbackURL: "/auth/google/callback"
+    clientID: "812772459618-5hn3doqmblo0d0ji1941b4ljhqt4bbco.apps.googleusercontent.com",
+    clientSecret: "cCQGh06d9chGUlq9eTVEeHOa",
+    callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ googleID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
+    User.findOne({ googleID: profile.id }, (err, user) => {
+        if (err) {
+            return done(err);
+        }
+        if (user) {
+            return done(null, user);
+        }
 
-    const newUser = new User({
-      googleID: profile.id
-    });
+        const newUser = new User({
+            googleID: profile.id
+        });
 
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
+        newUser.save((err) => {
+            if (err) {
+                return done(err);
+            }
+            done(null, newUser);
+        });
     });
-  });
 
 }));
 
@@ -183,10 +186,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // authentication configuration
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
     if (typeof(req.user) !== "undefined") {
         res.locals.userSignedIn = true;
-        res.locals.user = req.user || null
+        // res.locals.user = req.user || null
     } else {
         res.locals.userSignedIn = false;
     }
@@ -196,7 +199,7 @@ app.use( (req, res, next) => {
 
 // MIDDLEWARE
 app.use('/', index);
-app.use('/', auth); 
+app.use('/', auth);
 app.use('/api', apiRouter); // dive routes
 
 
@@ -218,7 +221,7 @@ app.use(function(err, req, res, next) {
     res.render('error');
 
     // handle error for dive number if not included
-    res.status(422).send({error: err.message});
+    res.status(422).send({ error: err.message });
 });
 
 module.exports = app;

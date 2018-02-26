@@ -14,7 +14,10 @@ auth.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }))
 
 // auth routes for facebook login
-auth.get('/auth/facebook', passport.authenticate('facebook'));
+auth.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['public_profile', 'email']
+}));
+
 auth.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	successRedirect: '/api/dives',
 	failureRedirect: '/'
@@ -46,6 +49,8 @@ auth.get("/logout", ensureLoggedIn('/login'), (req, res, next) => {
     req.logout();
     res.redirect('/');
 });
+
+
 
 
 module.exports = auth;

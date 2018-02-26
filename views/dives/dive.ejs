@@ -1,9 +1,21 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href='/stylesheets/dives.css' />
-<h1>DIVEX</h1>
-<% if (user) { %> 
-<p>Welcome, <%= user.username %></p>
-<% } %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>DIVEX</h1>
+            <p>Always remember your dive experiences</p>
+            <button class="btn btn-primary"><a href="/api/dives/new">Add a new dive</a></button>
+        </div>
+        <div id="new-dives" class="col-md-8">
+        	<% dives.forEach(oneDive => { %>
+        		<a id="color-link" href="/api/dives/<%=oneDive._id%>">
+        			<%= oneDive.number %> - <%= oneDive.location %>
+        		</a>
+        	<% }) %>
+        </div>
+    </div>
+</div>
 <footer id="footer">
-<a href="/logout"><i class="fas fa-power-off"></i></a>
+    <a href="/logout"><i class="fas fa-power-off"></i></a>
 </footer>

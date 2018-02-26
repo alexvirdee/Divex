@@ -15,6 +15,10 @@ const GeoSchema = new Schema({
 
 // create dive Schema & model
 const DiveSchema = new Schema({
+	owner: {
+		type: Schema.Types.ObjectId,
+		required: [true, "Must be an owner to add a dive"]
+	},
 	number: {
 		type: Number,
 		required: [true, 'Dive number is required']

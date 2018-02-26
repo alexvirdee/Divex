@@ -3,12 +3,12 @@ body {
     padding: 50px;
     background: url(file name);
     background-size: cover;
-    font-family: 'Tinos', serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .box {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
@@ -78,7 +78,7 @@ body {
     outline: none;
     color: #fff;
     background: #03a9f4;
-    margin-left: 10px;
+    margin-left: 12px;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
@@ -90,7 +90,7 @@ body {
     outline: none;
     color: #fff;
     background: #DC2217;
-    padding: 10px 20px;
+    padding: 10px 10px;
     cursor: pointer;
     border-radius: 5px;
 }

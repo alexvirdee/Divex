@@ -28,3 +28,33 @@ footer a {
 	padding: 4px;
 	color: #fff;
 }
+
+button a {
+    color: #fff;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color:#fff;
+}
+
+#color-link {
+    margin-left: 15px;
+}
+
+#color-link:hover {
+    color: red;
+}
+
+.dive-info {
+    list-style-type: none;
+}
+
+.dive-info li {
+    color: #fff;
+}
+
+#button-detail {
+    margin-left: 40px;
+}

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href='/stylesheets/dives.css' />
+<div id="dive-log">
+    <form action="/api/dives/new" method="POST">
+        <label for="number">Dive No.</label>
+        <input type="number" name="number" placeholder="Enter Dive Number">
+        <label for="date">Date</label>
+        <input type="date" name="date" placeholder="e.g 1/12/18">
+        <label for="location">Location</label>
+        <input type="text" name="location" placeholder="Koh Tao, Thailand">
+        <label for="objective">Objective</label>
+        <input type="text" name="objective" placeholder="Advanced Dive">
+        <label for="visibility">Visibility</label>
+        <input type="number" name="visibility" placeholder="visibility">
+        <label for="totalTime">totalTime</label>
+        <input type="number" name="totalTime" placeholder="Enter Time">
+        <label for="depth">Depth</label>
+        <input type="number" name="depth" placeholder="depth">
+        <label for="observations">Observations</label>
+        <input type="text" name="observations" placeholder="Lion Fish, shark, stingray">
+        <button type="submit">Save the dive</button>
+    </form>
+    <button class="btn btn-primary"><a href="/api/dives">Back</a></button>
+</div>

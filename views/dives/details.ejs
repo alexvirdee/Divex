@@ -1,0 +1,35 @@
+<link rel="stylesheet" href='/stylesheets/dives.css' />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="dive-info">
+                <li>
+                    <%= dive.number %>
+                </li>
+                <li>
+                	<%= dive.date %>
+                </li>
+                <li>
+                	<%= dive.location %>
+                </li>
+                <li>
+                	<%= dive.objective %>
+                </li>
+                <li>
+                	<%= dive.visibility %> meters
+                </li>
+                <li>
+                	<%= dive.totalTime %> minutes
+                </li>
+                <li>
+                	<%= dive.depth %> meters
+                </li>
+                <li>
+                	<%= dive.observations %>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button id="button-detail" class="btn btn-primary"><a href="/api/dives">Back to Dives</a></button>
+</div>
+
