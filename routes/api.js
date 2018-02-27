@@ -87,7 +87,6 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
         observations: req.body.observations,
         owner: req.user._id
 	}
-
     Dive.findByIdAndUpdate(diveId, updates, (err, dive) => {
         if (err) {
         	return res.render('dives/edit', {
@@ -103,7 +102,8 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 
 // delete a dive from the db
 apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-    Dive.findByIdAndRemove({ _id: req.params.id }).then(function(dive) {
+	diveId = req.params.id;
+    Dive.findByIdAndRemove({diveId}).then(function(dive) {
         res.send(dive);
     });
 });
