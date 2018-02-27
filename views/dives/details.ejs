@@ -4,32 +4,33 @@
         <div class="col-md-6">
             <ul class="dive-info">
                 <li>
-                    <%= dive.number %>
+               Dive No.    <%= dive.number %>
                 </li>
                 <li>
-                    <%= dive.date %>
+                 Date:   <%= dive.date %>
                 </li>
                 <li>
-                    <%= dive.location %>
+                 Location:   <%= dive.location %>
                 </li>
                 <li>
-                    <%= dive.objective %>
+                Objective:    <%= dive.objective %>
                 </li>
                 <li>
-                    <%= dive.visibility %> meters
+                Visibility:    <%= dive.visibility %> meters
                 </li>
                 <li>
-                    <%= dive.totalTime %> minutes
+                Time:    <%= dive.totalTime %> minutes
                 </li>
                 <li>
-                    <%= dive.depth %> meters
+                 Depth:   <%= dive.depth %> meters
                 </li>
                 <li>
-                    <%= dive.observations %>
+                 Observations:   <%= dive.observations %>
                 </li>
             </ul>
         </div>
     </div>
-    <button id="update-button" class="btn btn-danger"><a href="/api/dives/<%=dive._id%>/edit">Update Dive</a></button>
+    <button id="update-button" class="btn btn-info"><a href="/api/dives/<%=dive._id%>/edit">Update Dive</a></button>
+    <button id="delete-button" class="btn btn-danger"><a href="#">Delete Dive</a></button>
     <button id="button-detail" class="btn btn-primary"><a href="/api/dives">Back to Dives</a></button>
 </div>

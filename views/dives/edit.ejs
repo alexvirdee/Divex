@@ -1,7 +1,7 @@
 <link rel="stylesheet" href='/stylesheets/dives.css' />
 <h1 class="new-h1">Divex</h1>
 <div id="edit-log">
-    <form action="/api/dives/edit" method="POST">
+    <form action="/api/dives/<%=dive._id%>" method="POST">
         <div class="inputBox">
         	<label for="number">Dive No.</label>
             <input type="number" name="number" value="<%= dive.number %>">

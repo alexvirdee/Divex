@@ -83,22 +83,27 @@ a:active {
 
 .dive-info li {
     color: #fff;
+    margin: 10px 10px;
 }
 
 
 #button-detail {
     position: absolute;
     left: 60%;
-    top: 310px;
+    top: 388px;
 }
 
 #update-button {
     position: absolute;
     left: 30%;
-    top: 310px;
+    top: 388px;
 }
 
-
+#delete-button {
+    position: absolute;
+    left: 46%;
+    top: 388px;
+}
 
 #dive-log {
     position: absolute;

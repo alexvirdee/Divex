@@ -48,7 +48,7 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 // find specific dive render detail of dive in a new view
-apiRouter.get('/dives/:id', ensureLoggedIn('login'), (req, res, next) => {
+apiRouter.get('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
     diveId = req.params.id;
     Dive.findById(diveId, (err, theDive) => {
         if (err) {
@@ -62,7 +62,7 @@ apiRouter.get('/dives/:id', ensureLoggedIn('login'), (req, res, next) => {
 });
 
 // setup for update/edit route handling
-apiRouter.get('/dives/:id/edit', ensureLoggedIn('login'), (req, res, next) => {
+apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
     diveId = req.params.id;
     Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
@@ -74,7 +74,8 @@ apiRouter.get('/dives/:id/edit', ensureLoggedIn('login'), (req, res, next) => {
 });
 
 // update dive in the db
-apiRouter.post('/dives/:id/edit', (req, res, next) => {
+apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
+	diveId = req.params.id;
 	const updates = {
 		number: req.body.number,
         date: req.body.date,
@@ -83,14 +84,14 @@ apiRouter.post('/dives/:id/edit', (req, res, next) => {
         visibility: req.body.visibility,
         totalTime: req.body.totalTime,
         depth: req.body.depth,
-        observations: req.body.observations
+        observations: req.body.observations,
+        owner: req.user._id
 	}
 
-    Dive.findByIdAndUpdate(req.params.id, updates, (err, dive) => {
+    Dive.findByIdAndUpdate(diveId, updates, (err, dive) => {
         if (err) {
         	return res.render('dives/edit', {
-        		dive,
-        		errors: dive.errors
+        		dive
         	});
         }
         if (!dive) {
@@ -101,7 +102,7 @@ apiRouter.post('/dives/:id/edit', (req, res, next) => {
 });
 
 // delete a dive from the db
-apiRouter.delete('/dives/:id', (req, res, next) => {
+apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
     Dive.findByIdAndRemove({ _id: req.params.id }).then(function(dive) {
         res.send(dive);
     });
