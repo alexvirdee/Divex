@@ -64,22 +64,39 @@ apiRouter.get('/dives/:id', ensureLoggedIn('login'), (req, res, next) => {
 // setup for update/edit route handling
 apiRouter.get('/dives/:id/edit', ensureLoggedIn('login'), (req, res, next) => {
     diveId = req.params.id;
-    Dive.findById(diveId, (err, campaign) => {
+    Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
         return res.render('dives/edit', {
-            dive: theDive
+        	dive: dive
         });
     });
 });
 
-
 // update dive in the db
-apiRouter.put('/dives/:id', (req, res, next) => {
-    Dive.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function() {
-        Dive.findOne({ _id: req.params.id }).then(function(dive) {
+apiRouter.post('/dives/:id/edit', (req, res, next) => {
+	const updates = {
+		number: req.body.number,
+        date: req.body.date,
+        location: req.body.location,
+        objective: req.body.objective,
+        visibility: req.body.visibility,
+        totalTime: req.body.totalTime,
+        depth: req.body.depth,
+        observations: req.body.observations
+	}
 
-        });
+    Dive.findByIdAndUpdate(req.params.id, updates, (err, dive) => {
+        if (err) {
+        	return res.render('dives/edit', {
+        		dive,
+        		errors: dive.errors
+        	});
+        }
+        if (!dive) {
+        	return next(new Error('404'));
+        }
+        return res.redirect(`/api/dives/${dive._id}`);
     });
 });
 

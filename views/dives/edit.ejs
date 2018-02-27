@@ -1,34 +1,51 @@
 <link rel="stylesheet" href='/stylesheets/dives.css' />
 <h1 class="new-h1">Divex</h1>
-<div id="dive-log">
-    <form action="/api/dives/new" method="POST">
+<div id="edit-log">
+    <form action="/api/dives/edit" method="POST">
         <div class="inputBox">
-            <input type="number" name="number" value="Enter Dive Number">
+        	<label for="number">Dive No.</label>
+            <input type="number" name="number" value="<%= dive.number %>">
         </div>
         <div class="inputBox">
-            <input type="date" name="date">
+        	<label for="date">Date</label>
+            <input type="date" name="date" value="<%= dive.date %>">
         </div>
         <div class="inputBox">
-            <input type="text" name="location" value="Koh Tao, Thailand">
+        	<label for="location">Location</label>
+            <input type="text" name="location" value="<%= dive.location %>">
         </div>
         <div class="inputBox">
-            <input type="text" name="objective" value="Advanced Dive">
+        	<label for="objective">Objective</label>
+            <input type="text" name="objective" value="<%= dive.objective %>">
         </div>
         <div class="inputBox">
-            <input type="number" name="visibility" value="visibility (meters)">
+        	<label for="visibility">Visibility</label>
+            <input type="number" name="visibility" value="<%= dive.visibility %>">
         </div>
         <div class="inputBox">
-            <input type="number" name="totalTime" value="Enter Time">
+        	<label for="totalTime">Total Time</label>
+            <input type="number" name="totalTime" value="<%= dive.totalTime %>">
         </div>
         <div class="inputBox">
-            <input type="number" name="depth" value="depth (meters)">
+        	<label for="depth">Depth</label>
+            <input type="number" name="depth" value="<%= dive.depth %>">
         </div>
         <div class="inputBox">
-            <input type="text" name="observations" value="Lion Fish, shark, stingray">
+        	<label for="observations">Observations</label>
+            <input type="text" name="observations" value="<%= dive.observations %>">
         </div>
-        <button class="btn btn-danger" type="submit">Save the dive</button>
+        <button class="btn btn-danger" type="submit">Update the dive</button>
     </form>
          
         <button id="back-button" class="btn btn-primary"><a href="/api/dives">Back to Dives</a></button>
-
 </div>
+
+<% if (typeof(errors) !== 'undefined'){ %>
+  <div class="alert alert-danger">
+  <ul>
+    <% for (let error in errors){ %>
+      <li><%= errors[error].message %></li>
+    <% } %>
+  </ul>
+  </div>
+<% } %>
