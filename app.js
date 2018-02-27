@@ -14,9 +14,9 @@ require('dotenv').config();
 
 // Mongoose Configure/Connect
 const mongoose = require('mongoose');
-// mongoose.connect("mongodb://localhost/divex");
+mongoose.connect("mongodb://localhost/divex");
 // Mlab deploy configuration
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 // Require the models schemas for db
