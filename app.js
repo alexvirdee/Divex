@@ -5,17 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// initialize routes
-var auth = require('./routes/auth');
-var apiRouter = require('./routes/api');
 
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
 
+// require environment variables from .env file
+require('dotenv').config();
 
 // Mongoose Configure/Connect
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/divex");
+// mongoose.connect("mongodb://localhost/divex");
+// Mlab deploy configuration
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 // Require the models schemas for db
@@ -37,6 +38,11 @@ const bcrypt = require('bcrypt');
 // LINK ROUTES
 var index = require('./routes/index');
 
+// initialize routes
+var auth = require('./routes/auth');
+var apiRouter = require('./routes/api');
+
+
 var app = express();
 
 // express layouts
@@ -55,7 +61,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(session({
+    secret: "divex-app",
+    resave: true,
+    saveUninitialized: false
+}));
 
 // passport configuration
 passport.serializeUser((user, cb) => {
@@ -176,11 +186,7 @@ passport.use(new GoogleStrategy({
 
 }));
 
-app.use(session({
-    secret: "divex-app",
-    resave: true,
-    saveUninitialized: false
-}));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
