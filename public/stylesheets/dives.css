@@ -65,15 +65,33 @@ a:active {
 
 
 .dive-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     list-style-type: none;
+    background: rgba(0, 0, 0, .6);
+    box-shadow: 0 40px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px 10px;
+    text-align: center;
 }
 
 .dive-info li {
     color: #fff;
 }
 
+
 #button-detail {
-    margin-left: 40px;
+    position: absolute;
+    left: 60%;
+    top: 310px;
+}
+
+#update-button {
+    position: absolute;
+    left: 30%;
+    top: 310px;
 }
 
 #dive-log {

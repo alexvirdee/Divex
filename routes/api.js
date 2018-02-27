@@ -75,9 +75,12 @@ apiRouter.get('/dives/:id', (req, res, next) =>{
 
 // update dive in the db
 apiRouter.put('/dives/:id', (req, res, next) => {
+	diveId = req.params.id;
 	Dive.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
 		Dive.findOne({_id: req.params.id}).then(function(dive) {
-			res.send(dive);
+			res.render('dives/edit', {
+
+			});
 		});
 	});
 });
