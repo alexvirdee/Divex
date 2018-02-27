@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// require unsplash API 
+const Unsplash = require('unsplash-js').default;
 
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
@@ -185,8 +187,6 @@ passport.use(new GoogleStrategy({
     });
 
 }));
-
-
 
 app.use(passport.initialize());
 app.use(passport.session());
