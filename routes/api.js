@@ -16,19 +16,7 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
 				user: req.user,
 				dives: allDives
 		});
-		})
-		// .then(function(dives) {
-		// 	res.send(dives);
-		// });
-		// if (req.user === undefined) {
-  //     		res.redirect("/login");
-  //     		return;
-  // 			}
-
-		// res.render('dives/dive', {
-		// 	user: req.user
-		// });
-	// console.log(req.user);
+		});
 });
 
 apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
@@ -59,8 +47,8 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
   });
 });
 
-
-apiRouter.get('/dives/:id', (req, res, next) =>{
+// find specific dive render detail of dive in a new view
+apiRouter.get('/dives/:id', ensureLoggedIn('login'), (req, res, next) =>{
 	diveId = req.params.id;
 	Dive.findById(diveId, (err, theDive) => {
 		if(err){
@@ -69,18 +57,19 @@ apiRouter.get('/dives/:id', (req, res, next) =>{
 		}
 		res.render('dives/details', {
 			dive: theDive
-		})
-	})
-})
+		});
+	});
+});
+
+// setup for update/edit route handling
+apiRouter.get('/dives/:id/edit', ensureLoggedIn('login'))
+
 
 // update dive in the db
 apiRouter.put('/dives/:id', (req, res, next) => {
-	diveId = req.params.id;
 	Dive.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
 		Dive.findOne({_id: req.params.id}).then(function(dive) {
-			res.render('dives/edit', {
 
-			});
 		});
 	});
 });

@@ -1,1 +1,34 @@
 <link rel="stylesheet" href='/stylesheets/dives.css' />
+<h1 class="new-h1">Divex</h1>
+<div id="dive-log">
+    <form action="/api/dives/new" method="POST">
+        <div class="inputBox">
+            <input type="number" name="number" value="Enter Dive Number">
+        </div>
+        <div class="inputBox">
+            <input type="date" name="date">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="location" value="Koh Tao, Thailand">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="objective" value="Advanced Dive">
+        </div>
+        <div class="inputBox">
+            <input type="number" name="visibility" value="visibility (meters)">
+        </div>
+        <div class="inputBox">
+            <input type="number" name="totalTime" value="Enter Time">
+        </div>
+        <div class="inputBox">
+            <input type="number" name="depth" value="depth (meters)">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="observations" value="Lion Fish, shark, stingray">
+        </div>
+        <button class="btn btn-danger" type="submit">Save the dive</button>
+    </form>
+         
+        <button id="back-button" class="btn btn-primary"><a href="/api/dives">Back to Dives</a></button>
+
+</div>
