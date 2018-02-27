@@ -5,6 +5,8 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #02111D, #037BB5, #02111D);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 50px;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -90,20 +92,22 @@ a:active {
 #button-detail {
     position: absolute;
     left: 60%;
-    top: 388px;
+    top: 400px;
 }
 
 #update-button {
     position: absolute;
     left: 30%;
-    top: 388px;
+    top: 400px;
 }
 
 #delete-button {
     position: absolute;
     left: 46%;
-    top: 388px;
+    top: 400px;
 }
+
+
 
 #dive-log {
     position: absolute;
@@ -163,7 +167,11 @@ a:active {
 }
 
 
-@media only screen and (max-width: 520px) {
+@media all and  (max-width: 520px) {
+    body {
+        color: green ;
+    }
+
     #new-dives {
         display: flex;
         flex-direction: column;
@@ -188,4 +196,25 @@ a:active {
     .new-h1 {
         text-align: center;
     }
+
+    #detail-container {
+        display: flex;
+        flex-direction: column;
+        /*justify-content: flex-start;*/
+    }
+
+
+    #button-detail {
+    margin-top:10px;
+}
+
+#update-button {
+    margin-top:10px;
+}
+
+#delete-button {
+    margin-top: 10px;
+}
+
+
 }
