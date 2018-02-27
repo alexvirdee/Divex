@@ -24,3 +24,9 @@ $(function () {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
+// Sortable UI jQuery to move dives in different order
+$( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );

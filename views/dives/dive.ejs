@@ -6,7 +6,7 @@
             <p>Always remember your dive experiences</p>
             <button id="button-add" class="btn btn-info"><a href="/api/dives/new">Add a new dive</a></button>
         </div>
-        <div id="new-dives" class="col-md-8">
+        <div id="sortable" class="col-md-8">
         	<% dives.forEach(oneDive => { %>
         		<a id="color-link" href="/api/dives/<%=oneDive._id%>">
         			<%= oneDive.number %> - <%= oneDive.location %>
