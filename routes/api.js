@@ -19,6 +19,8 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
         });
 });
 
+
+
 apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     res.render('dives/new')
 });

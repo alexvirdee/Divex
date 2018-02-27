@@ -25,8 +25,10 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 
-// Sortable UI jQuery to move dives in different order
+// Sortable UI jQuery to move dives added in different order
 $( function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
   } );
+
+// setup unsplash API to be used in dives view
