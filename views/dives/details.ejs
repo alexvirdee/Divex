@@ -4,34 +4,66 @@
         <div class="col-md-6">
             <ul class="dive-info">
                 <li>
-               Dive No.    <%= dive.number %>
+                    Dive No.
+                    <%= dive.number %>
                 </li>
                 <li>
-                 Date:   <%= dive.date %>
+                    Date:
+                    <%= dive.date %>
                 </li>
                 <li>
-                 Location:   <%= dive.location %>
+                    Location:
+                    <%= dive.location %>
                 </li>
                 <li>
-                Objective:    <%= dive.objective %>
+                    Objective:
+                    <%= dive.objective %>
                 </li>
                 <li>
-                Visibility:    <%= dive.visibility %> meters
+                    Visibility:
+                    <%= dive.visibility %> meters
                 </li>
                 <li>
-                Time:    <%= dive.totalTime %> minutes
+                    Time:
+                    <%= dive.totalTime %> minutes
                 </li>
                 <li>
-                 Depth:   <%= dive.depth %> meters
+                    Depth:
+                    <%= dive.depth %> meters
                 </li>
                 <li>
-                 Observations:   <%= dive.observations %>
+                    Observations:
+                    <%= dive.observations %>
                 </li>
             </ul>
         </div>
     </div>
     <button id="update-button" class="btn btn-info"><a href="/api/dives/<%=dive._id%>/edit">Update Dive</a></button>
-    
-    <button id="delete-button" class="btn btn-danger"><a href="/api/dives/<%=dive._id%>">Delete Dive</a></button>
+    <!-- modal -->
+    <!-- Button trigger modal -->
+    <button id="delete-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+        Delete Dive
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Dive: "<%=dive.location%>"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this dive?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+                    <button class="btn btn-danger"><a class="delete-dive" href="#" data-id="<%=dive._id%>">Delete Dive</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
     <button id="button-detail" class="btn btn-success"><a href="/api/dives">Back to Dives</a></button>
 </div>

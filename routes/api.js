@@ -112,7 +112,8 @@ apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
     	if (!dive) {
     		return next(new Error('404'));
     	}
-   	   return res.redirect(`/api/dives/${dive._id}`)
+   	   // return res.redirect('/api/dives');
+   	   res.send('success');
     });
 });
 
