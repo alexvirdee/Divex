@@ -103,8 +103,16 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 // delete a dive from the db
 apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 	diveId = req.params.id;
-    Dive.findByIdAndRemove({diveId}).then(function(dive) {
-        res.send(dive);
+    Dive.findByIdAndRemove(diveId, (err, dive) => {
+    	if (err) {
+    		return res.render('/dives', {
+    			dive
+    		});
+    	}
+    	if (!dive) {
+    		return next(new Error('404'));
+    	}
+   	   return res.redirect(`/api/dives/${dive._id}`)
     });
 });
 
