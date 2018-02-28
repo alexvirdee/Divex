@@ -8,15 +8,6 @@ var bodyParser = require('body-parser');
 // require environment variables from .env file
 require('dotenv').config();
 
-// require unsplash API 
-const Unsplash = require('unsplash-js').default;
-
-const unsplash = new Unsplash({
-    applicationId: "1eef1b92ef476559fc534c3f9410ca265db6ed24b82f882cb00403f530b360c8",
-    secret: "2e077ae2856703ff10c93f4ddd021cc81d389c34a624efb632eddd573cda505a",
-    callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
-});
-
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
 

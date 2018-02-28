@@ -31,7 +31,6 @@ $( function() {
     $( "#sortable" ).disableSelection();
   } );
 
-// setup unsplash API to be used in dives view
 
 // GOOGLE MAPS
 $(document).ready(function(){
