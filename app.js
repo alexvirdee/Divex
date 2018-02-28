@@ -151,8 +151,8 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 
 passport.use(new FbStrategy({
-    clientID: "process.env.FACEBOOK_ID",
-    clientSecret: "process.env.FACEBOOK_SECRET",
+    clientID: "1004694843003133",
+    clientSecret: "6fc03018fa5375f6eca322726ab1c043",
     callbackURL: "/auth/facebook/callback",
     profileURL: 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
     profileFields: ['id', 'email', 'name']
