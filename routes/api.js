@@ -8,6 +8,24 @@ var aws = require('aws-sdk');
 var multer = require('multer');
 var multerS3 = require('multer-s3');
 
+aws.config.update({
+    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY ',
+    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
+    region: 'us-east-1'
+});
+
+var s3 = new aws.S3();
+
+var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'divex',
+        key: function(req, file, cb) {
+            console.log(file);
+            cb(null, file.originalname); //use Date.now() for unique file keys
+        }
+    })
+});
 
 // get request for dives page 
 apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
@@ -29,7 +47,7 @@ apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 // add a new dive into the db
-apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
+apiRouter.post('/dives/new', upload.array('upl', 1), ensureLoggedIn('/login'), (req, res, next) => {
     const newDive = new Dive({
         number: req.body.number,
         date: req.body.date,
@@ -39,10 +57,15 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
         totalTime: req.body.totalTime,
         depth: req.body.depth,
         observations: req.body.observations,
+        picture: {
+            name: req.body.name,
+            path: req.body.path,
+            originalName: req.body.originalname
+        },
         owner: req.user._id
     });
+    res.send("Uploaded!");
     console.log("=========", newDive.owner);
-
     newDive.save((err) => {
         if (err) {
             res.render('dives/new');
@@ -74,16 +97,16 @@ apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
         return res.render('dives/edit', {
-        	dive: dive
+            dive: dive
         });
     });
 });
 
 // update dive in the db
 apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-	diveId = req.params.id;
-	const updates = {
-		number: req.body.number,
+    diveId = req.params.id;
+    const updates = {
+        number: req.body.number,
         date: req.body.date,
         location: req.body.location,
         objective: req.body.objective,
@@ -92,15 +115,15 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
         depth: req.body.depth,
         observations: req.body.observations,
         owner: req.user._id
-	}
+    }
     Dive.findByIdAndUpdate(diveId, updates, (err, dive) => {
         if (err) {
-        	return res.render('dives/edit', {
-        		dive
-        	});
+            return res.render('dives/edit', {
+                dive
+            });
         }
         if (!dive) {
-        	return next(new Error('404'));
+            return next(new Error('404'));
         }
         return res.redirect(`/api/dives/${dive._id}`);
     });
@@ -110,7 +133,7 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 // view gallery 
 apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) => {
     diveId = req.params.id;
-     Dive.findById(diveId, (err, dive) => {
+    Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
         return res.render('dives/gallery', {
@@ -121,18 +144,18 @@ apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) =
 
 // delete a dive from the db
 apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-	diveId = req.params.id;
+    diveId = req.params.id;
     Dive.findByIdAndRemove(diveId, (err, dive) => {
-    	if (err) {
-    		return res.render('/dives', {
-    			dive
-    		});
-    	}
-    	if (!dive) {
-    		return next(new Error('404'));
-    	}
-   	   // return res.redirect('/api/dives');
-   	   res.send('success');
+        if (err) {
+            return res.render('/dives', {
+                dive
+            });
+        }
+        if (!dive) {
+            return next(new Error('404'));
+        }
+        // return res.redirect('/api/dives');
+        res.send('success');
     });
 });
 
