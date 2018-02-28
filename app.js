@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -19,11 +17,8 @@ const unsplash = new Unsplash({
     callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
 });
 
-
-
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
-
 
 
 // Mongoose Configure/Connect

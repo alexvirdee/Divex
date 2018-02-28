@@ -72,6 +72,13 @@ apiRouter.get('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
     });
 });
 
+// render gallery page for specific dive
+apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) => {
+    Picture.find((err, pictures) => {
+        res.render('dives/gallery', {pictures})
+    })
+});
+
 // setup for update/edit route handling
 apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
     diveId = req.params.id;
