@@ -1,5 +1,4 @@
-// require environment variables from .env file
-require('dotenv').config();
+
 
 var express = require('express');
 var path = require('path');
@@ -7,6 +6,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+// require environment variables from .env file
+require('dotenv').config();
 
 // require unsplash API 
 // const Unsplash = require('unsplash-js').default;
@@ -38,8 +40,8 @@ var expressLayouts = require('express-ejs-layouts');
 // Mongoose Configure/Connect
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/divex");
-// Mlab deploy configuration
-mongoose.connect(process.env.MONGODB_URI);
+// Mlab deploy configuration use when pushing to heroku 
+// mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 // Require the models schemas for db
@@ -151,8 +153,8 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 
 passport.use(new FbStrategy({
-    clientID: "1004694843003133", 
-    clientSecret: "6fc03018fa5375f6eca322726ab1c043", // add when deployed
+    clientID: "process.env.FACEBOOK_ID", 
+    clientSecret: "process.env.FACEBOOK_SECRET", // add when deployed
     callbackURL: "/auth/facebook/callback",
     profileURL: 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
     profileFields: ['id', 'email', 'name']
@@ -183,8 +185,8 @@ passport.use(new FbStrategy({
 
 
 passport.use(new GoogleStrategy({
-    clientID: "812772459618-5hn3doqmblo0d0ji1941b4ljhqt4bbco.apps.googleusercontent.com",
-    clientSecret: "cCQGh06d9chGUlq9eTVEeHOa",
+    clientID: "process.env.GOOGLE_ID",
+    clientSecret: "process.env.GOOGLE_SECRET",
     callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ googleID: profile.id }, (err, user) => {
