@@ -13,16 +13,6 @@ const GeoSchema = new Schema({
     }
 });
 
-// create picture Schema
-const pictureSchema = new Schema({
-    name: String,
-    path: String,
-    originalName: String
-
-}, {
-    timestamps: { createdAt: "created_at", updatedAt: "updatedAt" }
-});
-
 // create dive Schema & model
 const DiveSchema = new Schema({
     owner: {
@@ -43,7 +33,6 @@ const DiveSchema = new Schema({
     totalTime: Number,
     depth: Number,
     observations: [String],
-    picture: [pictureSchema],
     // add in maps location 
     geometry: GeoSchema
     // add in images to Schema

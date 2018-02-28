@@ -1,6 +1,6 @@
 <h1 class="new-h1">Divex</h1>
 <div id="dive-log">
-    <form action="/api/dives/new" method="POST" enctype="multipart/form-data">
+    <form action="/api/dives/new" method="POST">
         <div class="inputBox">
             <input type="number" name="number" placeholder="Enter Dive Number">
         </div>
@@ -24,9 +24,6 @@
         </div>
         <div class="inputBox">
             <input type="text" name="observations" placeholder="Lion Fish, shark, stingray">
-        </div>
-        <div class="inputBox">
-            <input type="file" name="picture">
         </div>
         <button class="btn btn-danger" type="submit">Save the dive</button>
     </form>
