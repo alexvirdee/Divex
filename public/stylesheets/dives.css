@@ -180,3 +180,9 @@ a:active {
 #gallery-h1 {
     text-align: center;
 }
+
+#location-btn {
+    position: absolute;
+    left: 45%;
+    margin-top: 15px;
+}

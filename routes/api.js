@@ -105,13 +105,13 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-// view gallery 
-apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) => {
+// view location
+apiRouter.get('/dives/:id/location', ensureLoggedIn('/login'), (req, res, next) => {
     diveId = req.params.id;
      Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
-        return res.render('dives/gallery', {
+        return res.render('dives/location', {
             dive: dive
         });
     });
