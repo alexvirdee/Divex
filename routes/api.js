@@ -4,6 +4,9 @@ const Dive = require('../models/dive');
 const User = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+var aws = require('aws-sdk');
+var multer = require('multer');
+var multerS3 = require('multer-s3');
 
 
 // get request for dives page 
