@@ -33,6 +33,11 @@ const DiveSchema = new Schema({
 	totalTime: Number,
 	depth: Number,
 	observations: [String],
+	picture: {
+		name: String,
+		path: String,
+		originalName: String
+	},
 	// add in maps location 
 	geometry: GeoSchema
 	// add in images to Schema

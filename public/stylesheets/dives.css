@@ -5,8 +5,8 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #02111D, #037BB5, #02111D);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding: 50px;
-  font-family: 'Roboto', sans-serif;
+    padding: 50px;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -166,10 +166,13 @@ a:active {
     bottom: 40px;
 }
 
+#gallery-btn {
+    position: absolute;
+    top: 460px;
+    left: 385px;
+    width: 40%;
+}
 
-
-
-
-
-
-
+#gallery-btn a {
+    color: #000;
+}
