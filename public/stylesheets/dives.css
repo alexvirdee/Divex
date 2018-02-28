@@ -176,3 +176,7 @@ a:active {
 #gallery-btn a {
     color: #000;
 }
+
+#gallery-h1 {
+    text-align: center;
+}

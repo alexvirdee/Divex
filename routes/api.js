@@ -1,12 +1,9 @@
 const express = require('express');
 const apiRouter = express.Router();
-const multer  = require('multer');
 const Dive = require('../models/dive');
 const User = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-// Route to upload from project base path
-var upload = multer({ dest: './public/uploads/' });
 
 
 // get request for dives page 
@@ -24,13 +21,12 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-
 apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     res.render('dives/new')
 });
 
 // add a new dive into the db
-apiRouter.post('/dives/new', upload.single('photo'), ensureLoggedIn('/login'), (req, res, next) => {
+apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     const newDive = new Dive({
         number: req.body.number,
         date: req.body.date,
@@ -40,11 +36,6 @@ apiRouter.post('/dives/new', upload.single('photo'), ensureLoggedIn('/login'), (
         totalTime: req.body.totalTime,
         depth: req.body.depth,
         observations: req.body.observations,
-        picture: {
-            name: req.body.name,
-            path: `/uploads/${req.file.filename}`,
-            originalName: req.file.originalname
-        },
         owner: req.user._id
     });
     console.log("=========", newDive.owner);
@@ -72,12 +63,6 @@ apiRouter.get('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
     });
 });
 
-// render gallery page for specific dive
-apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) => {
-    Picture.find((err, pictures) => {
-        res.render('dives/gallery', {pictures})
-    })
-});
 
 // setup for update/edit route handling
 apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
@@ -103,7 +88,6 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
         totalTime: req.body.totalTime,
         depth: req.body.depth,
         observations: req.body.observations,
-        picture: req.body.picture,
         owner: req.user._id
 	}
     Dive.findByIdAndUpdate(diveId, updates, (err, dive) => {
@@ -121,7 +105,16 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 
 
 // view gallery 
-
+apiRouter.get('/dives/:id/gallery', ensureLoggedIn('/login'), (req, res, next) => {
+    diveId = req.params.id;
+     Dive.findById(diveId, (err, dive) => {
+        if (err) { return next(err) }
+        if (!dive) { return next(new Error("404")) }
+        return res.render('dives/gallery', {
+            dive: dive
+        });
+    });
+});
 
 // delete a dive from the db
 apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {

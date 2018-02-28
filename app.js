@@ -20,7 +20,6 @@ const unsplash = new Unsplash({
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
 
-
 // Mongoose Configure/Connect
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/divex");
@@ -65,6 +64,7 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
