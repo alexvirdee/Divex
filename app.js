@@ -1,5 +1,5 @@
 // require environment variables from .env file
-require('dotenv').config({path: '.env'});
+require('dotenv').config();
 
 var express = require('express');
 var path = require('path');
