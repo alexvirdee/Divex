@@ -1,3 +1,6 @@
+// require environment variables from .env file
+require('dotenv').config({path: '.env'});
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,19 +9,31 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // require unsplash API 
-const Unsplash = require('unsplash-js').default;
+// const Unsplash = require('unsplash-js').default;
 
-const unsplash = new Unsplash({
-  applicationId: "1eef1b92ef476559fc534c3f9410ca265db6ed24b82f882cb00403f530b360c8",
-  secret: "2e077ae2856703ff10c93f4ddd021cc81d389c34a624efb632eddd573cda505a",
-  callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
-});
+// const unsplash = new Unsplash({
+//     applicationId: "1eef1b92ef476559fc534c3f9410ca265db6ed24b82f882cb00403f530b360c8",
+//     secret: "2e077ae2856703ff10c93f4ddd021cc81d389c34a624efb632eddd573cda505a",
+//     callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
+// });
+
+// const authenticationUrl = unsplash.auth.getAuthenticationUrl([
+//     "public",
+//     "read_photos"
+// ]);
+
+// location.assign(authenticationUrl);
+
+// unsplash.auth.userAuthentication(query.code)
+//   .then(toJson)
+//   .then(json => {
+//     unsplash.auth.setBearerToken(json.access_token);
+//   });
 
 // express layouts
 var expressLayouts = require('express-ejs-layouts');
 
-// require environment variables from .env file
-require('dotenv').config();
+
 
 // Mongoose Configure/Connect
 const mongoose = require('mongoose');
@@ -136,7 +151,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 
 passport.use(new FbStrategy({
-    clientID: "process.env.FACEBOOK_ID",
+    clientID: "process.env.facebookID",
     clientSecret: "process.env.FACEBOOK_SECRET",
     callbackURL: "/auth/facebook/callback",
     profileURL: 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
@@ -168,7 +183,7 @@ passport.use(new FbStrategy({
 
 
 passport.use(new GoogleStrategy({
-    clientID: "process.env.GOOGLE_ID",
+    clientID: "process.env.googleID",
     clientSecret: "process.env.GOOGLE_SECRET",
     callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
