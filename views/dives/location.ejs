@@ -8,11 +8,9 @@
 }
 </style>
 
-<% if (dive.lat === null) { %>
+<% if (dive.lat === null || dive.lng === null) { %>
 <h4 id="empty-h4">Add Coordinates to Display Maps</h4>
-    <div class="empty-location">
-        
-    </div>  
+    <div class="empty-location"></div>  
 <% } else{ %> 
 <div id="map"></div>
 <% } %>
