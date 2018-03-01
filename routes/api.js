@@ -18,6 +18,20 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
         });
 });
 
+// data page
+apiRouter.get('/dives/data', ensureLoggedIn('/login'), (req, res, next) => {
+    Dive.find({ owner: req.user._id },
+        (err, allDives) => {
+            if (err) {
+                res.redirect("/login");
+            }
+            res.render('dives/data', {
+                user: req.user,
+                dives: allDives
+            });
+        });
+});
+
 
 apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     res.render('dives/new')
@@ -39,9 +53,9 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
         owner: req.user._id
     });
     console.log("=========", newDive);
-
     newDive.save((err) => {
         if (err) {
+            console.log(err.message);
             res.render('dives/new');
         } else {
             res.redirect('/api/dives');

@@ -191,7 +191,6 @@ app.use(passport.session());
 
 
 
-
 // authentication configuration
 app.use((req, res, next) => {
     if (typeof(req.user) !== "undefined") {

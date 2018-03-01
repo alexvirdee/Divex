@@ -5,17 +5,20 @@
             <h1>DIVEX</h1>
             <p>Always remember your dive experiences</p>
             <button id="button-add" class="btn btn-info"><a href="/api/dives/new">Add a new dive</a></button>
+           
+                <button class="btn btn-info"><a href="/api/dives/data">View Diver Data</a></button>
+         
+        
         </div>
         <div id="sortable" class="col-md-8">
-        	<% dives.forEach(oneDive => { %>
-        		<a id="color-link" href="/api/dives/<%=oneDive._id%>">
-        			<%= oneDive.number %> - <%= oneDive.location %>
-        		</a>
-        	<% }) %>
+            <% dives.forEach(oneDive => { %>
+                <a id="color-link" href="/api/dives/<%=oneDive._id%>">
+                    <%= oneDive.number %> -
+                        <%= oneDive.location %>
+                </a>
+                <% }) %>
         </div>
     </div>
-</div>
-<div class="unsplash">
 </div>
 <footer id="footer">
     <a href="/logout"><i class="fas fa-power-off"></i></a>
