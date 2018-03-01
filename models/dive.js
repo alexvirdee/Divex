@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+var integerValidator = require('mongoose-integer');
+
 // create geolocation Schema
 const GeoSchema = new Schema({
     type: {
@@ -28,11 +30,13 @@ const DiveSchema = new Schema({
         default: Date.now
     },
     location: String,
-    lat: Number,
+    lat: {
+        type: Number,
+        integer: true
+    },
     lng: {
         type: Number,
-        unique: true,
-        validate: Number.isInteger
+        integer: true  
     },
     objective: String,
     visibility: Number,
