@@ -116,7 +116,8 @@ apiRouter.get('/dives/:id/location', ensureLoggedIn('/login'), (req, res, next) 
         return res.render('dives/location', {
             dive: dive,
             lat: req.body.lat,
-            lng: req.body.lng
+            lng: req.body.lng,
+            observations: req.body.observations
         });
     });
 });

@@ -168,6 +168,7 @@ a:active {
     margin-top: 15px;
 }
 
+
 .detail-buttons {
     position: absolute;
     top: 400px;
@@ -192,7 +193,7 @@ a:active {
     margin-top: 15px;
 }
 
-#empty-h4 {
+#empty-h4 a {
     position: absolute;
     top: 50%;
     left: 200px;
