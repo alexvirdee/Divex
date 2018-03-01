@@ -10,7 +10,7 @@
                     Date:
                     <%= dive.date %>
                 </li>
-                <li class="caps">
+                <li id="location" class="caps">
                     Location:
                     <%= dive.location %>
                 </li>
@@ -78,3 +78,5 @@
     <button id="button-detail" class="btn btn-success"><a href="/api/dives">Back to Dives</a></button>
     <button id="gallery-btn" class="btn btn-block btn-default"><a href="/api/dives/<%=dive._id%>/location">View Maps</a></button>
 </div>
+
+

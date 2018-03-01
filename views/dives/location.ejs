@@ -10,7 +10,8 @@
 
 <% if (dive.lat === null || dive.lng === null) { %>
 <h4 id="empty-h4">Add Coordinates to Display Maps</h4>
-    <div class="empty-location"></div>  
+    <div class="empty-location">
+    </div>  
 <% } else{ %> 
 <div id="map"></div>
 <% } %>
@@ -20,8 +21,12 @@
 <script type="text/javascript">
  // GOOGLE MAPS
 
-	function initMap(lat, lng) {
-		const map = new google.maps.Map(document.getElementById('map'), {
+
+	function initMap() {
+
+
+	const map = new google.maps.Map(document.getElementById('map'), {
+
     zoom: 12,
     center: {lat: <%=dive.lat%>, lng: <%=dive.lng%>},
     styles: 
@@ -107,6 +112,12 @@
 ]
   });
 
+    var marker = new google.maps.Marker({
+    position: {lat: <%=dive.lat%>, lng: <%=dive.lng%>},
+    title:"Hello World!"
+});
+
+marker.setMap(map);
 
 
 	}
@@ -115,3 +126,6 @@
 
 
 </script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV8NFUm86uf5q6hi2eclUYf_ud6KbTYnQ&callback=initMap"
+    ></script>
