@@ -29,7 +29,11 @@ const DiveSchema = new Schema({
     },
     location: String,
     lat: Number,
-    lng: Number,
+    lng: {
+        type: Number,
+        unique: true,
+        validate: Number.isInteger
+    },
     objective: String,
     visibility: Number,
     totalTime: Number,

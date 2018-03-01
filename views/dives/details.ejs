@@ -1,4 +1,3 @@
-
 <div id="detail-container" class="container">
     <div class="row">
         <div class="col-md-6">
@@ -14,6 +13,14 @@
                 <li class="caps">
                     Location:
                     <%= dive.location %>
+                </li>
+                <li>
+                    Latitude:
+                        <%= dive.lat %>
+                </li>
+                <li>
+                    Longitude:
+                        <%= dive.lng %>
                 </li>
                 <li>
                     Objective:
@@ -38,7 +45,10 @@
             </ul>
         </div>
     </div>
-    <button id="update-button" class="btn btn-info"><a href="/api/dives/<%=dive._id%>/edit">Update Dive</a></button>
+</div>
+
+<div class="detail-buttons"> 
+     <button id="update-button" class="btn btn-info"><a href="/api/dives/<%=dive._id%>/edit">Update Dive</a></button>
     <!-- modal -->
     <!-- Button trigger modal -->
     <button id="delete-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
@@ -66,5 +76,5 @@
     </div>
     <!-- end modal -->
     <button id="button-detail" class="btn btn-success"><a href="/api/dives">Back to Dives</a></button>
-    <button id="gallery-btn" class="btn btn-block btn-default"><a href="/api/dives/<%=dive._id%>/location">View Location</a></button>
+    <button id="gallery-btn" class="btn btn-block btn-default"><a href="/api/dives/<%=dive._id%>/location">View Maps</a></button>
 </div>

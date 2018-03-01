@@ -67,7 +67,7 @@ a:active {
 }
 
 .caps {
-     text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 #color-link:hover {
@@ -94,26 +94,6 @@ a:active {
 }
 
 
-#button-detail {
-    position: absolute;
-    left: 60%;
-    top: 400px;
-}
-
-#update-button {
-    position: absolute;
-    left: 30%;
-    top: 400px;
-}
-
-#delete-button {
-    position: absolute;
-    left: 46%;
-    top: 400px;
-}
-
-
-
 #dive-log {
     position: absolute;
     top: 50%;
@@ -135,7 +115,7 @@ a:active {
     transform: translate(-50%, -50%);
     width: 400px;
     padding: 40px;
-    margin-top: 15px;
+    margin-top: 80px;
     background: rgba(0, 0, 0, .6);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -172,12 +152,6 @@ a:active {
     bottom: 40px;
 }
 
-#gallery-btn {
-    position: absolute;
-    top: 460px;
-    left: 385px;
-    width: 40%;
-}
 
 #gallery-btn a {
     color: #000;
@@ -191,4 +165,19 @@ a:active {
     position: absolute;
     left: 45%;
     margin-top: 15px;
+}
+
+.detail-buttons {
+    position: absolute;
+    top: 400px;
+    left: 450px;
+    margin-top: 60px;
+}
+
+.detail-buttons button {
+    margin: 5px;
+}
+
+#gallery-btn {
+    width: 97%;
 }
