@@ -20,8 +20,6 @@
 
 
             function initMap() {
-
-
                 const map = new google.maps.Map(document.getElementById('map'), {
 
                     zoom: 12,
@@ -93,8 +91,7 @@
                     ]
                 });
 
-
-                // Add marker function
+                // Add google maps marker function
                 function addMarker(props) {
                     var marker = new google.maps.Marker({
                         position: props.coords,
