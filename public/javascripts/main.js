@@ -33,11 +33,11 @@ $( function() {
 
 
 // GOOGLE MAPS
-$(document).ready(function(){
+$(document).ready(function(lat, lng){
 
 const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
-    center: {lat:41.3977381, lng:-2.090471916},
+    center: {lat: lat, lng: lng},
     styles: 
 [
     {

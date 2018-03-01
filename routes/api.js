@@ -28,7 +28,8 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     const newDive = new Dive({
         number: req.body.number,
         date: req.body.date,
-        location: req.body.location,
+        lat: req.body.lat,
+        lng: req.body.lng,
         objective: req.body.objective,
         visibility: req.body.visibility,
         totalTime: req.body.totalTime,

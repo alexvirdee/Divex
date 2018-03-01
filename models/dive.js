@@ -28,6 +28,8 @@ const DiveSchema = new Schema({
         default: Date.now
     },
     location: String,
+    lat: Number,
+    lng: Number,
     objective: String,
     visibility: Number,
     totalTime: Number,
