@@ -28,6 +28,7 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
     const newDive = new Dive({
         number: req.body.number,
         date: req.body.date,
+        location: req.body.location,
         lat: req.body.lat,
         lng: req.body.lng,
         objective: req.body.objective,
@@ -111,7 +112,9 @@ apiRouter.get('/dives/:id/location', ensureLoggedIn('/login'), (req, res, next) 
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
         return res.render('dives/location', {
-            dive: dive
+            dive: dive,
+            lat: req.body.lat,
+            lng: req.body.lng
         });
     });
 });

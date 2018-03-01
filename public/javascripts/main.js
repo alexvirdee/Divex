@@ -32,12 +32,12 @@ $( function() {
   } );
 
 
-// GOOGLE MAPS
-$(document).ready(function(lat, lng){
+    // GOOGLE MAPS
+$(document).ready(function(){
 
 const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
-    center: {lat: lat, lng: lng},
+    center: {lat: 41.3977381, lng: -2.090471916},
     styles: 
 [
     {
