@@ -7,7 +7,15 @@
     margin-top: 15px;
 }
 </style>
+
+<% if (dive.lat === null) { %>
+    <div class="empty-location">
+        <h4>Add Coordinates to Display Maps</h4>
+    </div>  
+<% } else{ %> 
 <div id="map"></div>
+<% } %>
+
 <button id="location-btn" class="btn btn-info"><a href="/api/dives">Back to Dives</a></button>
 
 <script type="text/javascript">
