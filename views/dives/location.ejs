@@ -114,13 +114,13 @@
 
     var marker = new google.maps.Marker({
     position: {lat: <%=dive.lat%>, lng: <%=dive.lng%>},
-    title:"Hello World!"
+    animation: google.maps.Animation.DROP,
+    draggable: true
 });
 
 marker.setMap(map);
 
-
-	}
+}
 
 
 
