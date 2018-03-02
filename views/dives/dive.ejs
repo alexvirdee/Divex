@@ -9,7 +9,7 @@
         <div id="sortable" class="col-md-8">
             <% dives.forEach(oneDive => { %>
                 <a id="color-link" href="/api/dives/<%=oneDive._id%>">
-                    <%= oneDive.number %> -
+                    <%= oneDive.number %>:
                         <%= oneDive.location %>
                 </a>
                 <% }) %>

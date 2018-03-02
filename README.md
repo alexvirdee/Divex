@@ -8,4 +8,6 @@ Divex is a scuba diving logbook built to remember your dive experiences. I've al
 ![Home Page](/public/images/Home-page.png) 
 
 ### Authentication
-User authentication built using Passport with Express the app uses encryption salts to hash user passwords for protection. The app also allows for scoial logins on both Facebook and Google as well as local login. This allows for a personal application for the user to log their own diving experiences. 
+User authentication built using Passport with Express the app uses encryption salts to hash user passwords for protection. The app also allows for scoial logins on both Facebook and Google. This allows for a personal application for the user to log their own diving experiences. 
+
+
