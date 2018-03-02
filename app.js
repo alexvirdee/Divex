@@ -128,8 +128,8 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 
 passport.use(new FbStrategy({
-    clientID: "process.env.FACEBOOK_ID", 
-    clientSecret: "process.env.FACEBOOK_SECRET", // add when deployed
+    clientID: "1004694843003133", 
+    clientSecret: "6fc03018fa5375f6eca322726ab1c043", // add when deployed
     callbackURL: "/auth/facebook/callback",
     profileURL: 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
     profileFields: ['id', 'email', 'name']
@@ -160,8 +160,8 @@ passport.use(new FbStrategy({
 
 
 passport.use(new GoogleStrategy({
-    clientID: "process.env.GOOGLE_ID",
-    clientSecret: "process.env.GOOGLE_SECRET",
+    clientID: "812772459618-5hn3doqmblo0d0ji1941b4ljhqt4bbco.apps.googleusercontent.com",
+    clientSecret: "cCQGh06d9chGUlq9eTVEeHOa",
     callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ googleID: profile.id }, (err, user) => {
