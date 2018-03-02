@@ -2,7 +2,7 @@
 [Divex](http://divex.herokuapp.com/ "Divex")
 
 ## About
-Divex is a scuba diving logbook built to remember your dive experiences. I've always wanted to make my own diving application so that I could save my dives and create an interactive application for other divers to use. The application is built with Node, express, and a MongoDB database. the front end is rendered using ejs. The app incorporates the Google Maps API which renders based on a divers GPS coordinates location they input into the database when they input a new dive.
+Divex is a scuba diving logbook built to remember your dive experiences. I've always wanted to make my own diving application so that I could save my dives and create an interactive application for other divers to use. The application is built with Node, express, and a MongoDB database. the front end is rendered using ejs. The app incorporates the Google Maps API which renders based on a divers GPS coordinates location they input into the database when they add a new dive.
 
 ### Home 
 ![Home Page](/public/images/Home-page.png) 
