@@ -4,6 +4,7 @@ const Dive = require('../models/dive');
 const User = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+
 // get request for dives page 
 apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
     Dive.find({ owner: req.user._id },
@@ -18,7 +19,7 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
         });
 });
 
-// data page
+// Render data page 
 apiRouter.get('/dives/data', ensureLoggedIn('/login'), (req, res, next) => {
     Dive.find({ owner: req.user._id },
         (err, allDives) => {
