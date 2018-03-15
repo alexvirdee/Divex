@@ -3,6 +3,18 @@ const apiRouter = express.Router();
 const Dive = require('../models/dive');
 const User = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
+// const Unsplash = require('unsplash-js').default;
+import Unsplash, {toJson} from 'unsplash-js';
+
+
+const unsplash = new Unsplash({
+  applicationId: "1eef1b92ef476559fc534c3f9410ca265db6ed24b82f882cb00403f530b360c8",
+  secret: "2e077ae2856703ff10c93f4ddd021cc81d389c34a624efb632eddd573cda505a",
+  callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
+});
 
 
 // get request for dives page 
@@ -19,6 +31,18 @@ apiRouter.get('/dives', ensureLoggedIn('/login'), (req, res, next) => {
         });
 });
 
+
+// Photography of Dives from Unsplash ** All users can see this page
+apiRouter.get('/photography', (req, res, next) => {
+    unsplash.photos.getRandomPhoto({ query: "scuba" })
+  .then(toJson)
+  .then(json => {
+    const jsonResult = json;
+    console.log(json);
+    res.render('dives/photography', 
+        {photos: jsonResult});
+  });
+});
 
 
 apiRouter.get('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
@@ -53,7 +77,7 @@ apiRouter.post('/dives/new', ensureLoggedIn('/login'), (req, res, next) => {
 
 // find specific dive render detail of dive in a new view
 apiRouter.get('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-    diveId = req.params.id;
+    const diveId = req.params.id;
     Dive.findById(diveId, (err, theDive) => {
         if (err) {
             next(err);
@@ -69,7 +93,7 @@ apiRouter.get('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 
 // setup for update/edit route handling
 apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
-    diveId = req.params.id;
+    const diveId = req.params.id;
     Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
@@ -81,7 +105,7 @@ apiRouter.get('/dives/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
 
 // update dive in the db
 apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-	diveId = req.params.id;
+	const diveId = req.params.id;
 	const updates = {
 		number: req.body.number,
         date: req.body.date,
@@ -111,7 +135,7 @@ apiRouter.post('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
 
 // view location
 apiRouter.get('/dives/:id/location', ensureLoggedIn('/login'), (req, res, next) => {
-    diveId = req.params.id;
+   const diveId = req.params.id;
      Dive.findById(diveId, (err, dive) => {
         if (err) { return next(err) }
         if (!dive) { return next(new Error("404")) }
@@ -126,7 +150,7 @@ apiRouter.get('/dives/:id/location', ensureLoggedIn('/login'), (req, res, next) 
 
 // delete a dive from the db
 apiRouter.delete('/dives/:id', ensureLoggedIn('/login'), (req, res, next) => {
-	diveId = req.params.id;
+	const diveId = req.params.id;
     Dive.findByIdAndRemove(diveId, (err, dive) => {
     	if (err) {
     		return res.render('/dives', {

@@ -208,4 +208,31 @@ a:active {
     width: 200px;
 }
 
+.dive-h1 {
+    text-align: center;
+}
+
+.dive-photo {
+    width: 600px;
+    height: 400px;
+    background: rgba(0, 0, 0, .6);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.unsplash {
+    text-align: center;
+}
+
+.credit {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.photo-buttons {
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 15px;
+}
 

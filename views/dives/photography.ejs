@@ -1,0 +1,11 @@
+<h1 class="dive-h1">Dive Photos</h1>
+<div class="unsplash">
+	<img class="dive-photo" src="<%= photos.urls.regular %>" alt="Dive photo"> 
+</div>
+<div class="credit">
+	Photo by <a href="https://unsplash.com/@<%=photos.user.username%>?utm_source=Divex&utm_medium=referral"><%=photos.user.name%></a> on <a href="https://unsplash.com/?utm_source=Divex&utm_medium=referral">Unsplash</a>
+</div>
+<div class="photo-buttons">
+	<button class="btn btn-danger"><a href="/api/dives">Back to Dives</a></button>
+	<button class="btn btn-info"><a href="/api/photography">New Photo</a></button>
+</div>
